@@ -8,7 +8,8 @@
     "start": "next start",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm test && npm run build",
+    "check": "npm run typecheck && npm test && npm run test:runtime && npm run build",
+    "test:runtime": "node --no-experimental-require-module scripts/runtime-check.cjs",
     "test:live": "vitest run src/lib/mistral.live.test.ts",
     "format": "prettier --write src docs *.json *.ts *.md",
     "format:check": "prettier --check src docs *.json *.ts *.md",
@@ -31,10 +32,11 @@
     "vitest": "4.1.12"
   },
   "engines": {
-    "node": ">=22 <25"
+    "node": "22.x"
   },
   "overrides": {
-    "@grpc/grpc-js": "1.14.7"
+    "@grpc/grpc-js": "1.14.7",
+    "jwks-rsa": "3.2.2"
   },
   "type": "module"
 }

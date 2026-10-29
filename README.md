@@ -112,6 +112,7 @@ Semua akses koleksi dari client ditolak oleh `firestore.rules`. Server SDK memak
 ```powershell
 npm run typecheck
 npm test
+npm run test:runtime
 npm run build
 npm audit
 ```
@@ -125,6 +126,8 @@ Remove-Item Env:RUN_LIVE_MISTRAL
 ```
 
 Perintah live memakai kuota API nyata. Jangan memasukkan rahasia atau data nasabah ke fixture. Lihat [matriks verifikasi](docs/VERIFICATION.md) untuk membedakan mock/unit, layanan nyata, dan pengujian yang belum dilakukan.
+
+Runtime dipatok ke Node.js 22. `jwks-rsa` dipatok ke 3.2.2 melalui npm override karena versi 4 pada Firebase Admin memanggil modul ESM dengan `require()`, yang gagal pada runtime Vercel ketika interoperabilitas eksperimental dimatikan. Tes cold import meniru kondisi tersebut; verifikasi Firebase token tetap diperiksa melalui uji layanan nyata. Override gRPC juga menghindari versi yang terkena advisory. Periksa kembali kedua override saat memperbarui SDK.
 
 ## Struktur source
 

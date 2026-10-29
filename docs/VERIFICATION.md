@@ -32,6 +32,8 @@ Catatan ini membedakan layanan nyata dan test mock. Tanggal: 29 Oktober 2026.
 
 ## Review kode akhir
 
+Uji deployment pertama mengungkap cold-start API 500 meski build lolos: `jwks-rsa` 4 me-require `jose` ESM. Reproduksi lokal `node --no-experimental-require-module` gagal sebelum perbaikan dan lolos sesudah pin kompatibel `jwks-rsa` 3.2.2. Node dipatok 22.x. Cold import kini termasuk `npm run check`; audit dependensi tetap 0 temuan. Deployment pertama tidak dianggap sebagai chat publik yang berhasil.
+
 Reviewer independen membaca `8834bdb → 0fca841` tanpa membuka credential/private folder. Tidak ada temuan Critical. Lima kasus direproduksi sebagai test gagal sebelum satu putaran perbaikan:
 
 1. Retry pertanyaan lanjutan kini memakai snapshot request/history awal.
