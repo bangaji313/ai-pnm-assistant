@@ -27,3 +27,12 @@ Landing → Mari Coba → login/register atau Use Demo Account → ruang chat V3
 - Mistral GET models HTTP 200; chat pertama HTTP 429. Belum mengklaim inferensi berhasil.
 - Koneksi Firebase ditawarkan; provisioning menunggu akses terkonfirmasi.
 - Kontrol browser Windows berhenti karena URL tidak dapat dipastikan. Tidak mengubah pengaturan lewat browser setelah itu.
+
+## Hasil eksekusi
+
+- Browser kembali dapat dikontrol pada giliran berikutnya setelah pengguna membuka Firebase dan URL dapat dipastikan. Login CLI memakai sesi yang cocok; kode tidak dimasukkan ke repo.
+- Proyek `ai-pnm-assistant-demo`, auth, Web App dan Firestore telah dibuat terpisah dari VitalSense.
+- Firestore Standard dipilih untuk counter sederhana pada paket gratis; lokasi Jakarta mengikuti pengguna. Tidak memakai Enterprise atau upgrade billing.
+- Model `ministral-3b-latest` lolos inferensi dan structured output. Small awal mendapat 429.
+- IAM server hanya Datastore User pada proyek AI.PNM. OAuth pribadi CLI tidak dipakai sebagai credential deployment.
+- Review independen dan satu putaran perbaikan mencakup retry context, password alfabetis, batas kata NIK, live announcement, dan fokus riwayat mobile. Semua reproduksi gagal sebelum perbaikan dan lolos sesudahnya.

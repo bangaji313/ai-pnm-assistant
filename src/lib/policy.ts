@@ -3,6 +3,10 @@ import { articles } from "./knowledge";
 export function redact(input: string): string {
   return input
     .replace(
+      /\b(?:password|passwd|kata\s*sandi|api[_ -]?key|token)\s+(?:saya(?:\s+adalah)?|adalah|is)\s+[^\s,;]+/gi,
+      "[RAHASIA DIHAPUS]",
+    )
+    .replace(
       /\b(?:password|passwd|kata\s*sandi|api[_ -]?key|token)\s*(?:saya|adalah)?\s*[:=]\s*[^\s,;]+/gi,
       "[RAHASIA DIHAPUS]",
     )
@@ -31,7 +35,7 @@ export function assess(input: string): {
         "Saya membantu informasi PNM dan contoh kendala aplikasi yang tersedia. Silakan tanyakan tentang PNM, Mekaar, ULaMM, GPS, atau OTP.",
     };
   if (
-    /transfer|reversal|rollback|hapus\s*data|plafon.*(lolos|naik)|bypass|password\s*vpn|saldo|dana.*masuk|status.*(nasabah|transaksi|pencairan)|ludin|dukcapil|nik|ktp|rekening|angsuran|suku\s*bunga/.test(
+    /transfer|reversal|rollback|hapus\s*data|plafon.*(lolos|naik)|bypass|password\s*vpn|saldo|dana.*masuk|status.*(nasabah|transaksi|pencairan)|ludin|dukcapil|\bnik\b|\bktp\b|rekening|angsuran|suku\s*bunga/.test(
       q,
     )
   )

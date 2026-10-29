@@ -2,6 +2,15 @@ import { describe, expect, it } from "vitest";
 import { assess, redact, retrieve, validateAnswer } from "./policy";
 
 describe("public knowledge boundary", () => {
+  it("removes explicit alphabetic password declarations", () => {
+    expect(
+      redact("OTP belum diterima. password saya SandiContoh"),
+    ).not.toContain("SandiContoh");
+    expect(redact("password adalah SandiContoh")).not.toContain("SandiContoh");
+  });
+  it("does not match NIK inside an unrelated Indonesian word", () => {
+    expect(assess("Bagaimana teknik pendampingan Mekaar?").kind).toBe("search");
+  });
   it("recognizes a plain company question", () => {
     expect(retrieve("Apa itu PNM?")[0]?.id).toBe("company");
     expect(retrieve("Jelaskan Mengenal PNM")[0]?.id).toBe("company");

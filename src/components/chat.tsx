@@ -18,6 +18,10 @@ type Message = {
   feedback?: string;
 };
 type Conversation = { id: string; title: string; messages: Message[] };
+type RetryRequest = {
+  message: string;
+  history: { role: "user" | "assistant"; content: string }[];
+};
 const uid = () => crypto.randomUUID();
 const initial = (): Conversation => ({
   id: uid(),
@@ -41,7 +45,7 @@ export function Chat() {
   const [draft, setDraft] = useState(params.get("q")?.slice(0, 1200) ?? "");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [retry, setRetry] = useState("");
+  const [retry, setRetry] = useState<RetryRequest | null>(null);
   const [online, setOnline] = useState(true);
   const [menu, setMenu] = useState(false);
   const [narrow, setNarrow] = useState(false);
@@ -146,11 +150,11 @@ export function Chat() {
     setActive(c.id);
     setDraft("");
     setError("");
-    setRetry("");
+    setRetry(null);
     setMenu(false);
     input.current?.focus();
   }
-  async function send(text = draft, isRetry = false) {
+  async function send(text = draft, retryRequest?: RetryRequest) {
     if (!user || busy || !text.trim()) return;
     if (!online) {
       setError(
@@ -163,8 +167,10 @@ export function Chat() {
       setNotice(
         "Informasi yang berpotensi sensitif disamarkan sebelum dikirim.",
       );
-    const history = messages.map((m) => ({ role: m.role, content: m.content }));
-    if (!isRetry)
+    const history =
+      retryRequest?.history ??
+      messages.map((m) => ({ role: m.role, content: m.content }));
+    if (!retryRequest)
       update((c) => ({
         ...c,
         title: c.messages.length ? c.title : clean.slice(0, 48),
@@ -173,10 +179,10 @@ export function Chat() {
           { id: uid(), role: "user" as const, content: clean },
         ].slice(-50),
       }));
-    if (!isRetry) setDraft("");
+    if (!retryRequest) setDraft("");
     setBusy(true);
     setError("");
-    setRetry("");
+    setRetry(null);
     try {
       const token = await user.getIdToken();
       const response = await fetch("/api/chat", {
@@ -215,7 +221,7 @@ export function Chat() {
           ? "Layanan membutuhkan waktu lebih lama. Silakan coba lagi."
           : (e as Error).message || "Koneksi terputus. Silakan coba lagi.",
       );
-      setRetry(clean);
+      setRetry({ message: clean, history });
     } finally {
       setBusy(false);
       input.current?.focus();
@@ -344,8 +350,9 @@ export function Chat() {
                 setActive(c.id);
                 setMenu(false);
                 setError("");
-                setRetry("");
+                setRetry(null);
                 setDraft("");
+                input.current?.focus();
               }}
               title={c.title}
             >
@@ -419,6 +426,18 @@ export function Chat() {
           data contoh; jangan bagikan OTP atau data nasabah.
         </div>
         <main id="main" className="chat-main">
+          <div
+            className="sr-only"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {!busy
+              ? messages
+                  .findLast((m) => m.role === "assistant")
+                  ?.content.replace(/\*\*/g, "")
+              : ""}
+          </div>
           <div className="chat-scroll">
             <div className="chat-content">
               {!messages.length ? (
@@ -547,7 +566,7 @@ export function Chat() {
                   {retry && (
                     <button
                       className="button outline"
-                      onClick={() => void send(retry, true)}
+                      onClick={() => void send(retry.message, retry)}
                       disabled={busy || !online}
                     >
                       Coba lagi <Arrow />
