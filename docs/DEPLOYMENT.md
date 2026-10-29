@@ -2,6 +2,10 @@
 
 Target hosting: Vercel, proyek terpisah `ai-pnm-assistant`. Tidak mengandalkan GitHub Actions atau build workflow GitHub. Repository tetap dapat di-clone, di-push, dan ditinjau seperti biasa selama fitur repo akun tersedia.
 
+URL publik: **https://ai-pnm-assistant.vercel.app/**. Proteksi akun Vercel hanya untuk preview; landing produksi dapat dibuka pengunjung umum. Login Firebase tetap dipakai pada aplikasi chat.
+
+Catatan CLI 15.34.2: provider auth berhasil diprovisikan melalui `firebase.json`, tetapi daftar authorized domains tidak diterapkan dari field tersebut. Domain produksi dan localhost dikonfigurasi melalui API resmi `projects.updateConfig` dengan field mask `authorizedDomains`, lalu dibaca ulang. Untuk instalasi mandiri, gunakan Firebase Console dan pertahankan domain bawaan Firebase.
+
 ## Deployment langsung
 
 1. Jalankan `npm ci`, `npm run check`, dan `npm audit` di lokal.

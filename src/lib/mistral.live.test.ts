@@ -16,3 +16,20 @@ it.skipIf(process.env.RUN_LIVE_MISTRAL !== "1")(
   },
   30000,
 );
+it.skipIf(process.env.RUN_LIVE_MISTRAL !== "1")(
+  "keeps live FAQ output inside curated text",
+  async () => {
+    const docs = retrieve("Long Lat UK tidak terdeteksi GPS");
+    const answer = await generateAnswer(
+      "Long Lat UK tidak terdeteksi GPS",
+      docs,
+      [],
+    );
+    expect(answer.curated).toBe(true);
+    expect(answer.answer).toBe(
+      "Ini contoh presentasi, belum menjadi panduan operasional yang disahkan PNM.\n\n" +
+        docs[0].text,
+    );
+  },
+  30000,
+);

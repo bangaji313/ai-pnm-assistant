@@ -503,7 +503,9 @@ export function Chat() {
                             <span>
                               {m.engine === "mistral"
                                 ? "Disusun dengan Mistral"
-                                : "Batas layanan"}
+                                : m.engine === "curated"
+                                  ? "Contoh terkurasi · pilihan Mistral"
+                                  : "Batas layanan"}
                             </span>
                           </>
                         ) : (

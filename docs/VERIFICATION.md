@@ -32,6 +32,8 @@ Catatan ini membedakan layanan nyata dan test mock. Tanggal: 29 Oktober 2026.
 
 ## Review kode akhir
 
+Pembaruan final suite: 33 unit/component/boundary test lolos, 2 live test Mistral opt-in lolos (perusahaan dan FAQ terkurasi), cold-import runtime lolos, serta audit npm 0. Uji FAQ live menemukan model menambah saran di luar teks contoh; mode FAQ kini dibatasi enum teks dan pemeriksaan kecocokan persis, dengan status disisipkan server. Kedua regresi tambahan diuji RED→GREEN.
+
 Uji deployment pertama mengungkap cold-start API 500 meski build lolos: `jwks-rsa` 4 me-require `jose` ESM. Reproduksi lokal `node --no-experimental-require-module` gagal sebelum perbaikan dan lolos sesudah pin kompatibel `jwks-rsa` 3.2.2. Node dipatok 22.x. Cold import kini termasuk `npm run check`; audit dependensi tetap 0 temuan. Deployment pertama tidak dianggap sebagai chat publik yang berhasil.
 
 Reviewer independen membaca `8834bdb → 0fca841` tanpa membuka credential/private folder. Tidak ada temuan Critical. Lima kasus direproduksi sebagai test gagal sebelum satu putaran perbaikan:

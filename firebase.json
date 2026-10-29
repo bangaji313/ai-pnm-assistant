@@ -1,11 +1,5 @@
 {
   "auth": {
-    "authorizedDomains": [
-      "localhost",
-      "127.0.0.1",
-      "ai-pnm-assistant-seno-ajis-projects.vercel.app",
-      "ai-pnm-assistant.vercel.app"
-    ],
     "providers": { "anonymous": true, "emailPassword": true }
   },
   "firestore": {

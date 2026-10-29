@@ -109,7 +109,7 @@ export async function POST(req: Request) {
     return json({
       ...result,
       kind: "answer",
-      engine: "mistral",
+      engine: result.curated ? "curated" : "mistral",
       sources: docs.filter((d) => result.sourceIds.includes(d.id)),
     });
   } catch (error) {

@@ -28,6 +28,8 @@ Landing dan dokumen informasi dapat diakses publik. Chat memakai Firebase ID tok
 
 Pembatasan ID sumber tidak membuktikan groundedness setiap kalimat. Evaluasi manusia terhadap kecukupan sumber tetap diperlukan. Prompt injection dan penyamaran merupakan mitigasi berlapis, bukan jaminan sempurna.
 
+Khusus artikel FAQ ber-ID `demo-*`, JSON Schema membatasi `answer` ke enum teks sumber. Server menolak hasil yang tidak persis sama atau tidak cocok dengan ID sumber, lalu menambahkan label belum disahkan. Response memakai `engine: curated`; UI menyatakan contoh terkurasi yang dipilih Mistral. Teks perusahaan tetap memakai `engine: mistral`. Ini mencegah parafrase FAQ menambahkan langkah yang belum ada di materi.
+
 ## API
 
 `POST /api/chat`
