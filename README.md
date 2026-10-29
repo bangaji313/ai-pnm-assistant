@@ -103,6 +103,15 @@ Screenshot berikut diambil dari deployment publik menggunakan data demonstrasi. 
 
 ![Beranda percakapan AI.PNM](docs/screenshots/chat-desktop.png)
 
+<details>
+<summary>Lihat contoh jawaban FAQ dengan sumber dan status materi</summary>
+
+![Jawaban FAQ terkurasi dengan label contoh presentasi](docs/screenshots/faq-sourced-desktop.png)
+
+Jawaban ini memakai teks contoh yang dibatasi server. Label belum disahkan tetap terlihat agar audiens dapat membedakan demonstrasi dari panduan operasional.
+
+</details>
+
 ## Alur penggunaan
 
 ```mermaid
