@@ -11,3 +11,5 @@ ENERGY 3 / RHYTHM 3 / MOTION 2 untuk landing; ENERGY 1 / RHYTHM 2 / MOTION 1 unt
 Radius: input dan tombol 10px, kartu 16px, komposisi visual 28px. Shadow hanya untuk cuplikan aplikasi yang berada di depan ilustrasi. Target interaksi 44px, fokus terlihat, label form eksplisit, error terbaca pembaca layar. Sidebar dapat ditutup pada layar kecil. Sumber tampil dalam panel yang memiliki tombol tutup dan kembali.
 
 Kredit: pengusul konsep Maulana Dzaky Riswandi; perancangan konsep dan UI/UX Maulana Seno Aji Yudhantara. Aset logo dan AO disediakan pengguna; hak merek tetap milik pemiliknya.
+
+Ikon tab browser memakai monogram AI putih pada biru #1369B2. Bentuk huruf disimpan sebagai path SVG agar terbaca pada ukuran kecil tanpa bergantung font; wordmark lengkap tetap dipakai di halaman. Next.js menyisipkan ikon melalui konvensi `src/app/icon.svg`.
