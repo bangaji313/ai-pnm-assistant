@@ -5,8 +5,8 @@ Diperbarui **30 Oktober 2026 (WIB)**. Pemeriksaan membedakan test dengan mock, l
 ## Status akhir
 
 - Demo publik: [ai-pnm-assistant.vercel.app](https://ai-pnm-assistant.vercel.app/).
-- Runtime yang diperiksa: commit `d06f633dea9f2e28b77e8cd652a77c79a05e5c87`.
-- Deployment Vercel: `dpl_7qPhAyuaHmUmBKWjw1cSvwaz7Sxy`, status **READY**, Node.js 22.x.
+- Runtime terbaru yang diperiksa: commit `4c04267429f2c749253ae7611e703c598941d5c8`.
+- Deployment Vercel: `dpl_5C47V82CsWJ9Y9JhvwyHckn7qFX6`, status **READY**, Node.js 22.x.
 - Perubahan dokumentasi dan gambar setelah commit runtime tidak mengubah kode aplikasi.
 - Pengujian dijalankan lokal; tidak bergantung pada GitHub Actions atau workflow berbayar.
 
@@ -33,6 +33,12 @@ Diperbarui **30 Oktober 2026 (WIB)**. Pemeriksaan membedakan test dengan mock, l
 | Secret pada file tracked Git           | Tidak ditemukan nilai key Mistral atau private key Firebase aktual                                         |
 
 ## Jawaban FAQ dan sumber
+
+Pembaruan favicon pada 30 Oktober menggunakan `src/app/icon.svg`. `npm run check` diulang dan lolos: 33 test lokal, cold import, serta build dengan route ikon statis. Dua test live opt-in tidak diulang oleh perintah tersebut. Ikon publik mengembalikan HTTP 200 `image/svg+xml`, identik dengan source, dan elemen `link rel="icon"` terlihat pada halaman produksi.
+
+Pada deployment terbaru, login tamu, jawaban perusahaan Mistral, FAQ GPS dan OTP terkurasi, sumber, klarifikasi, penolakan, batas transaksi, no-answer, feedback, salin draf, riwayat dan logout diperiksa melalui browser. Screenshot presentasi diambil langsung dari deployment menggunakan data sintetis.
+
+Dokumen perencanaan yang disediakan pengguna juga disinkronkan ke implementasi V3: 21 tab, 2.401 sel berubah, 17 formula tanpa error, 28 tabel native dipertahankan, dan validasi tidak diubah. Seluruh 89 slide tetap berstatus belum disahkan. Cadangan dan bukti pemeriksaan spreadsheet disimpan lokal di folder private; isi katalog tidak disalin ke repository publik.
 
 Uji live menemukan model menambahkan saran GPS yang tidak ada pada teks contoh. FAQ kini memakai enum teks dalam JSON Schema dan pemeriksaan kecocokan persis pada server. Model memilih teks yang disediakan, lalu server menyisipkan status contoh presentasi. Kasus penambahan langkah dan pemilihan sumber yang tidak sesuai diuji RED → GREEN.
 

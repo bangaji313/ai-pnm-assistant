@@ -13,3 +13,11 @@ Durasi contoh 5–7 menit. Gunakan browser desktop dan jaringan stabil; siapkan 
 Jika API mendapat rate limit atau koneksi terputus, jelaskan status sebenarnya dan gunakan retry manual. Jangan menyebut teks cuplikan landing sebagai inferensi live. Tidak ada mode tersembunyi yang berpura-pura berhasil ketika provider gagal.
 
 Demo adalah bukti pengalaman dan integrasi teknis. Adopsi operasional memerlukan persetujuan konten PNM, otorisasi pengguna internal, sumber yang aktif, tata kelola data, pengukuran mutu, dan kesiapan dukungan.
+
+## Materi tangkapan layar
+
+Paket 30 Oktober 2026 berisi 32 screenshot asli dari deployment publik: 24 desktop dan 8 mobile. Paket disimpan sesuai lokasi pengguna, di `J:\My Drive\KULIAH\KERJA\PT Permodalan Nasional Madani (PNM)\AI_PNM_Web_V3\Screenshot_Web_Demo_2026-10-30`.
+
+Buka `BUKA_GALERI.html` untuk meninjau gambar, `URUTAN_PRESENTASI.md` untuk urutan alur, atau file JPG langsung pada folder `Desktop` dan `Mobile`. Manifest mencatat dimensi asli serta SHA-256. Browser dapat mengecualikan scrollbar dari tangkapan; viewport pengambilan adalah 1440×900 dan 390×844.
+
+Gambar register hanya menunjukkan formulir. Pemulihan akses menunjukkan validasi email kosong tanpa mengirim email. Gambar sesi berakhir diambil setelah logout nyata; tidak menyimulasikan token kedaluwarsa. Tidak ada error provider palsu atau data nasabah yang disisipkan untuk gambar.
