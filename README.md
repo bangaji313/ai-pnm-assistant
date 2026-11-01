@@ -16,7 +16,7 @@
   <img alt="Mistral Ministral 3B" src="https://img.shields.io/badge/Mistral-Ministral_3B-F54E00?style=flat-square&logo=mistralai&logoColor=white">
   <img alt="Node.js 22" src="https://img.shields.io/badge/Node.js-22-417E38?style=flat-square&logo=nodedotjs&logoColor=white">
   <img alt="Hosted on Vercel" src="https://img.shields.io/badge/Vercel-Deployment-111111?style=flat-square&logo=vercel&logoColor=white">
-  <img alt="33 local tests passing" src="https://img.shields.io/badge/Tests_local-33_passing-2E7D32?style=flat-square">
+  <img alt="76 local tests passing" src="https://img.shields.io/badge/Tests_local-76_passing-2E7D32?style=flat-square">
 </p>
 
 <p align="center">
@@ -81,7 +81,8 @@ Alternatifnya, daftar akun dengan email/password lalu gunakan akun tersebut untu
 - Landing page, login, register, pemulihan password, dan sesi tamu Firebase.
 - Ruang chat responsive yang mengikuti shell dan identitas V3.
 - Jawaban informasi perusahaan disusun Mistral berdasarkan sumber server; FAQ dibatasi ke teks terkurasi yang dipilih model.
-- Informasi publik tentang PNM, Mekaar, dan ULaMM; contoh kendala GPS/OTP dan beberapa pesan error.
+- Corpus 27 artikel: profil dan pendirian PNM, direksi/komisaris, grup serta unit kerja, program AO/karyawan, manfaat dan pendidikan keluarga nasabah, Mekaar/ULaMM, serta contoh kendala aplikasi.
+- Beasiswa AO dibedakan dari beasiswa anak nasabah; tanggal sumber terlihat tanpa menganggap pendaftaran otomatis sedang dibuka.
 - Klarifikasi pertanyaan ambigu, penolakan topik di luar lingkup, dan jawaban “sumber belum cukup”.
 - Panel sumber, riwayat per tab, feedback sesi, draf eskalasi, error/offline dan retry.
 - Penyamaran pola rahasia sebelum request model, batas panjang pesan/history, dan kuota persisten di Firestore.
@@ -140,6 +141,8 @@ flowchart TD
 ## Status dan batas demo
 
 Mistral tidak di-fine-tune. Pembatasan dilakukan melalui kebijakan server, retrieval pada corpus kecil, instruksi model, JSON Schema, dan pemeriksaan ID sumber. Penggunaan sumber tidak menjamin setiap kalimat AI benar; pengunjung tetap perlu memeriksa rujukan.
+
+Perluasan pengetahuan ditinjau **1 November 2026** dari halaman primer PNM, dengan rincian pada [daftar sumber](docs/KNOWLEDGE.md). Contoh pertanyaan baru: “Siapa direktur utama PNM?”, “Ada program apa untuk AO?”, “Bagaimana beasiswa kuliah AO?”, “Apa beasiswa anak nasabah?”, dan “Apa itu Mpok Rena?”. Jawaban publik menyertakan tanggal tinjauan. Data merupakan snapshot yang diperbarui pengelola, bukan browsing langsung atau pengesahan kelayakan penerima program.
 
 Untuk FAQ yang belum disahkan, model hanya boleh memilih dan menyalin salah satu teks contoh terkurasi. Server memeriksa kecocokan persis dan menambahkan label status; model tidak bebas menciptakan langkah operasional. Mode ini diberi label berbeda pada percakapan. Informasi perusahaan memakai jawaban generatif bersumber.
 

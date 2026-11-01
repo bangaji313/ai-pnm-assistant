@@ -28,6 +28,10 @@ Landing dan dokumen informasi dapat diakses publik. Chat memakai Firebase ID tok
 
 Pembatasan ID sumber tidak membuktikan groundedness setiap kalimat. Evaluasi manusia terhadap kecukupan sumber tetap diperlukan. Prompt injection dan penyamaran merupakan mitigasi berlapis, bukan jaminan sempurna.
 
+Perluasan 1 November 2026 memakai 27 artikel. Retrieval mengenali keyword tunggal dan frasa berbatas kata; frasa mendapat bobot lebih tinggi. Konteks karyawan atau nasabah menyaring metadata `audience`, sementara pertanyaan perbandingan dapat mengambil keduanya. Istilah generik tertentu membutuhkan konteks PNM agar pertanyaan organisasi/program lain tidak otomatis mengambil artikel PNM. Maksimum tetap dua sumber. Kandidat mengikuti keluarga sumber teratas (publik atau contoh FAQ), sehingga kata “aplikasi” tidak memaksa jawaban program publik masuk mode FAQ terkurasi.
+
+Jawaban publik mendapat footer tanggal tinjauan dari metadata sumber yang benar-benar dirujuk. Tanggal ditambahkan server, bukan bergantung pada kepatuhan model. Ini bukan bukti pemutakhiran live; pengelola tetap perlu meninjau ulang sumber berkala. Field `audience` pada artikel bersifat opsional dan tidak mengubah autentikasi, IAM atau hak pegawai.
+
 Khusus artikel FAQ ber-ID `demo-*`, JSON Schema membatasi `answer` ke enum teks sumber. Server menolak hasil yang tidak persis sama atau tidak cocok dengan ID sumber, lalu menambahkan label belum disahkan. Response memakai `engine: curated`; UI menyatakan contoh terkurasi yang dipilih Mistral. Teks perusahaan tetap memakai `engine: mistral`. Ini mencegah parafrase FAQ menambahkan langkah yang belum ada di materi.
 
 ## API
