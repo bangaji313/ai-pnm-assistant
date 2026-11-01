@@ -1,8 +1,38 @@
 # Hasil verifikasi
 
-Diperbarui **30 Oktober 2026 (WIB)**. Pemeriksaan membedakan test dengan mock, layanan nyata, dan inspeksi browser. Status di bawah berlaku pada saat pemeriksaan; ketersediaan provider dan kuota dapat berubah.
+Diperbarui **1 November 2026 (WIB)**. Pemeriksaan membedakan test dengan mock, layanan nyata, dan inspeksi browser. Status berlaku pada saat pemeriksaan; ketersediaan provider dan kuota dapat berubah.
 
-## Status akhir
+## Perluasan pengetahuan PNM — 1 November 2026
+
+- Demo publik: [ai-pnm-assistant.vercel.app](https://ai-pnm-assistant.vercel.app/).
+- Runtime yang diuji: commit `e63ae43b18ebcec02bb5d489612ff0dab7279b2b`.
+- Deployment Vercel: `dpl_BsTQrnifWiDVfTPf8ujJq6eYCA3y`, **READY**, Node.js 22.x; alias produksi mengarah ke deployment ini.
+- Corpus: **27 artikel** (21 sumber publik PNM dan 6 contoh FAQ belum disahkan). Ditambahkan 18 artikel publik; sejarah perusahaan turut diperbarui. Daftar sumber dan batasnya ada di [KNOWLEDGE.md](KNOWLEDGE.md).
+- Tidak mengubah alur akun, tampilan, rules Firebase, kuota atau dependensi. Pengujian dan deployment dijalankan langsung tanpa GitHub Actions.
+
+| Pemeriksaan            | Hasil                                                                                                                                                                                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run check`        | Lolos: TypeScript, **76 test lokal**, cold-import runtime dan production build; 6 test live dilewati oleh suite default                                                                                          |
+| Live Mistral opt-in    | **6/6 lolos**, termasuk Kindaris, beasiswa AO, beasiswa anak nasabah, Mpok Rena, Mekaar dan FAQ GPS                                                                                                              |
+| Retrieval              | Alias jabatan, pendirian, grup, unit kerja, program karyawan/nasabah, pemisahan penerima dan penolakan topik tanpa sumber diuji                                                                                  |
+| Tanggal sumber         | Server menambahkan tanggal tinjauan hanya dari sumber yang dipakai; test membuktikan tanggal sumber lain tidak ikut dicantumkan                                                                                  |
+| API produksi           | **6/6 HTTP 200**: direktur utama → `leadership`, beasiswa AO → `ao-programs`, beasiswa anak nasabah → `customer-scholarships`, anak perusahaan → `pnm-group`, unit organisasi → `organization`, GPS → `demo-gps` |
+| Batas API produksi     | Coding ditolak, cuti menghasilkan no-answer, tanpa ID token HTTP 401; akun tamu QA sintetis dihapus setelah uji API                                                                                              |
+| Browser produksi       | Masuk tamu, pertanyaan direktur dan AO, jawaban Mistral, tanggal, panel sumber resmi, riwayat dan katalog 27 topik diperiksa                                                                                     |
+| Secret tracked Git     | Tidak ditemukan nilai key Mistral atau private key Firebase aktual; contoh placeholder README bukan credential                                                                                                   |
+| `npm audit --omit=dev` | **6 moderate**, **0 high/critical**, pada rantai dependensi transitif yang tidak diubah dalam revisi ini                                                                                                         |
+
+Uji live awal memperlihatkan model dapat melewatkan tanggal tinjauan walaupun prompt memintanya. Reproduksi unit gagal sebelum penambahan footer pada server, lalu lolos bersama suite lengkap dan enam uji Mistral nyata. Jawaban publik kini selalu memiliki tanggal tinjauan sumber. Ini tidak menjamin seluruh parafrase model selalu tepat.
+
+Informasi AO merujuk publikasi **30 Oktober 2025**. Uji browser menampilkan penerima AO berprestasi, tanggal publikasi, serta kebutuhan memeriksa ketentuan internal; tidak membuktikan pendaftaran sedang dibuka. Beasiswa anak nasabah diuji terpisah dan tidak menjanjikan kelulusan otomatis.
+
+Audit melaporkan advisory `glob` (GHSA-3g3m-2fjr-6pw4) dan `minimatch` (GHSA-g3hv-75wg-m249), dengan dampak transitif melalui `rimraf`, `gaxios`, `gcp-metadata` dan `google-gax`. `npm audit fix --dry-run` tidak menghasilkan perbaikan paket. Pembaruan mayor/paksaan SDK tidak diterapkan pada revisi konten ini; tindak lanjut dependensi masih diperlukan. Angka nol pada riwayat 30 Oktober di bawah merupakan hasil saat itu.
+
+Bukti API dan screenshot browser disimpan lokal di `private/qa/pnm-20261101/` dan tidak disertakan dalam Git. Dokumen ini tidak mengklaim pengujian ulang register email, IAM/rules, seluruh viewport atau seluruh perangkat pada 1 November. Spreadsheet dan paket screenshot presentasi 30 Oktober tidak diperbarui dalam revisi pengetahuan ini.
+
+## Pemeriksaan sebelumnya — 30 Oktober 2026
+
+Bagian berikut menyimpan hasil historis sebelum perluasan corpus. Istilah "terbaru" dan "terakhir" dalam catatan ini mengacu pada pemeriksaan 30 Oktober, bukan deployment 1 November di atas.
 
 - Demo publik: [ai-pnm-assistant.vercel.app](https://ai-pnm-assistant.vercel.app/).
 - Runtime terbaru yang diperiksa: commit `4c04267429f2c749253ae7611e703c598941d5c8`.
