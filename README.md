@@ -62,7 +62,6 @@ Proyek ini meneruskan desain website V3 yang telah ditinjau pengguna. Tujuannya 
 - Repository: [bangaji313/ai-pnm-assistant](https://github.com/bangaji313/ai-pnm-assistant)
 - Demo publik: **[ai-pnm-assistant.vercel.app](https://ai-pnm-assistant.vercel.app/)**.
 - Lokal: `http://localhost:3000`
-- Source pengembangan: `E:\Data-Aji\KERJA\AI-PNM-Assistant`
 
 GitHub dipakai untuk version control dan dokumentasi. **Tidak ada GitHub Actions, scheduled workflow, atau otomasi GitHub yang dibutuhkan.** Pengujian berjalan lokal dan deployment dilakukan langsung ke Vercel.
 
@@ -346,7 +345,6 @@ firestore.rules          Tolak semua akses database dari client
 | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Pemilik repository, pengembangan web, konsep dan UI/UX | **Maulana Seno Aji Yudhantara** — [@bangaji313](https://github.com/bangaji313)                                                                          |
 | Pengusul konsep dan kebutuhan presentasi               | **Maulana Dzaky Riswandi**                                                                                                                              |
-| Bantuan implementasi                                   | Codex, dengan Anti Slop untuk UI/copy/aksesibilitas, Superpowers untuk implementasi dan verifikasi, serta Ponytail untuk menjaga lingkup dan dependensi |
 
 Logo, karakter AO, dan merek PNM tetap menjadi hak pemiliknya. Penggunaan aset pada konsep ini tidak menyatakan afiliasi atau pengesahan resmi PNM. Repository publik tidak mengalihkan hak merek/aset; izin penggunaan kode di luar review atau presentasi perlu disepakati dengan pemilik proyek.
 
